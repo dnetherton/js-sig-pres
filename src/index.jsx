@@ -17,13 +17,15 @@ import sample12 from './samples/sample-12'
 import sample13 from './samples/sample-13'
 import sample14 from './samples/sample-14'
 import sample15 from './samples/sample-15'
+import sample16 from './samples/sample-16'
 import ReactSample01 from './samples/react-01'
 import ReactSample02 from './samples/react-02'
 
 const samples = [
   sample01, sample02, sample03, sample04, sample05,
   sample06, sample07, sample08, sample09, sample10,
-  sample11, sample12, sample13, sample14, sample15
+  sample11, sample12, sample13, sample14, sample15,
+  sample16
 ]
 
 function App(props) {

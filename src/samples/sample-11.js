@@ -1,21 +1,23 @@
 import { clear, write } from '../utils.js'
 import Rx from 'rxjs/Rx'
 
-function *foo() {
-    yield 1
-    yield 2
-    yield 3
-    yield 4
-    yield 5
-}
+const subject = new Rx.Subject()
+const observable = subject.map(x => x * 2)
 
 export default function sample11() {
   clear('Sample 11')
-  write('observing a generator')
+  write('composing an observable')
 
-  const observer = Rx.Observable.from(foo())
+  const subscription = observable.subscribe({
+    next: x => write(x)
+  })
 
-  observer.forEach(x => write(x))
+  subject.next(1)
+  subject.next(2)
+  subject.next(3)
+  subject.next(4)
+
+  subscription.unsubscribe()
 }
 
 if (IsNode)

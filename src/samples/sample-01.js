@@ -14,6 +14,8 @@ export default function sample01() {
   write(eArr.next())
   write(eArr.next())
 
+  write('----------------------------------')
+
   for (let letter of arr) // implicit conversion to iterator
     write(letter)
 }

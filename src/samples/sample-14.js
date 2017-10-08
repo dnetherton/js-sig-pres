@@ -1,32 +1,25 @@
 import { clear, write } from '../utils.js'
 import Rx from 'rxjs/Rx'
-
-function logDataFlow(x) {
-  write('Data:', x)
-}
+import { memoriseLastValue } from 'rx-react-js'
 
 const subject = new Rx.Subject()
-const observable = subject.do(logDataFlow)
+const observable = subject::memoriseLastValue()
 
 export default function sample14() {
   clear('Sample 14')
-  write('multiple subscribers means multiple invokation')
+  write('remember some data')
 
-  const subscription1 = observable.subscribe({
-    next: x => { /* do nothing */ }
+  subject.next(1)
+  subject.next(2)
+
+  const subscription = observable.subscribe({
+    next: x => write(x)
   })
 
-  const subscription2 = observable.subscribe({
-    next: x => { /* do nothing */ }
-  })
+  subject.next(3)
+  subject.next(4)
 
-  subject.next('a')
-  subject.next('b')
-  subject.next('c')
-  subject.next('d')
-
-  subscription1.unsubscribe()
-  subscription2.unsubscribe()
+  subscription.unsubscribe()
 }
 
 if (IsNode)

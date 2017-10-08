@@ -1,16 +1,17 @@
 import { clear, write } from '../utils.js'
 import Rx from 'rxjs/Rx'
+import { shared } from 'rx-react-js'
 
 function logDataFlow(x) {
   write('Data:', x)
 }
 
 const subject = new Rx.Subject()
-const observable = subject.do(logDataFlow)
+const observable = subject.do(logDataFlow)::shared()
 
-export default function sample15() {
-  clear('Sample 15')
-  write('multiple subscribers means multiple invokation')
+export default function sample16() {
+  clear('Sample 16')
+  write('share your subscriptions')
 
   const subscription1 = observable.subscribe({
     next: x => { /* do nothing */ }
@@ -30,4 +31,4 @@ export default function sample15() {
 }
 
 if (IsNode)
-  sample15()
+  sample16()

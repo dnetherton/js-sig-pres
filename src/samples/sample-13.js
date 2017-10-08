@@ -1,13 +1,12 @@
 import { clear, write } from '../utils.js'
 import Rx from 'rxjs/Rx'
-import { memoriseLastValue } from 'rx-react-js'
 
 const subject = new Rx.Subject()
-const observable = subject::memoriseLastValue()
+const observable = subject
 
 export default function sample13() {
   clear('Sample 13')
-  write('remember some data')
+  write('send data nowhere')
 
   subject.next(1)
   subject.next(2)
